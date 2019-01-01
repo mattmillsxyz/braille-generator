@@ -55,8 +55,8 @@ const styles = theme => ({
 const App = props => {
   const { classes } = props;
 
-  if (process.env.GA_ID) {
-    ReactGA.initialize();
+  if (process.env.REACT_APP_GA_ID) {
+    ReactGA.initialize(process.env.REACT_APP_GA_ID);
     ReactGA.pageview(window.location.pathname + window.location.search);
   } else {
     console.log('No Google tracking ID found...');
