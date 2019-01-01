@@ -9,6 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import deepPurple from '@material-ui/core/colors/deepPurple';
 import pink from '@material-ui/core/colors/pink';
+import ReactGA from 'react-ga';
 
 import AppBar from './AppBar';
 import Footer from './Footer';
@@ -53,6 +54,11 @@ const styles = theme => ({
 
 const App = props => {
   const { classes } = props;
+
+  if (process.env.GA_ID) {
+    ReactGA.initialize();
+    ReactGA.pageview(window.location.pathname + window.location.search);
+  }
 
   return (
     <MuiThemeProvider theme={theme}>
