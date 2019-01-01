@@ -58,6 +58,8 @@ const App = props => {
   if (process.env.GA_ID) {
     ReactGA.initialize();
     ReactGA.pageview(window.location.pathname + window.location.search);
+  } else {
+    console.log('No Google tracking ID found...');
   }
 
   return (
