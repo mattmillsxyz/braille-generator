@@ -1,28 +1,15 @@
 import React from 'react';
 import Braille from 'braille';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import Grid from '@material-ui/core/Grid';
 import html2canvas from 'html2canvas';
 import saveAs from 'file-saver';
-import { withStyles } from '@material-ui/core/styles';
 
-const styles = theme => ({
-  actionButtons: {
-    marginTop: '30px',
-  },
-  codeContainer: {
-    fontFamily: 'Apple Braille',
-    minHeight: '18px',
-    marginTop: '30px',
-    textAlign: 'center',
-    overflowWrap: 'break-word',
-    fontSize: '24px',
-  },
-  textInput: {
-    textAlign: 'center !important',
-  },
-});
+const codeStyle = {
+  fontFamily: 'Apple Braille',
+  minHeight: '36px',
+  marginTop: '20px',
+  overflowWrap: 'break-word',
+  fontSize: '24px',
+};
 
 class Generator extends React.Component {
   constructor(props) {
@@ -35,7 +22,8 @@ class Generator extends React.Component {
     };
   }
 
-  downloadPNG = () => {
+  downloadPNG = e => {
+    e.preventDefault();
     html2canvas(document.querySelector('#code'), {
       backgroundColor: 'transparent',
     }).then(function(canvas) {
@@ -51,49 +39,47 @@ class Generator extends React.Component {
   };
 
   render() {
-    const { classes } = this.props;
-
     return (
-      <Grid container justify="center" direction="column" wrap="nowrap">
-        <TextField
-          placeholder="Type in the text you want to convert..."
-          value={this.state.text}
-          onChange={this.handleChange}
-          fullWidth
-          className={classes.textInput}
-          inputProps={{
-            style: { textAlign: 'center' },
-          }}
-        />
-        <div id="code" className={classes.codeContainer}>
-          {this.state.code || ''}
-        </div>
-        <Grid
-          container
-          direction="row"
-          justify="space-evenly"
-          className={classes.actionButtons}
-          style={
-            this.state.code
-              ? { visibility: 'visible' }
-              : { visibility: 'hidden' }
-          }
-        >
-          <Grid item>
-            <Button
-              id="downloadPNG"
-              variant="contained"
-              size="large"
-              color="secondary"
-              onClick={this.downloadPNG}
+      <section className="row">
+        <div className="col-md-8 offset-md-2">
+          <form>
+            <div className="form-group">
+              <input
+                placeholder="Type in the text you want to convert..."
+                value={this.state.text}
+                onChange={this.handleChange}
+                className="form-control form-control-lg"
+                type="text"
+                id="text-input"
+                aria-label="Type in the text you want to convert"
+              />
+            </div>
+
+            <div id="code" style={codeStyle}>
+              <div>{this.state.code || ''}</div>
+            </div>
+
+            <div
+              style={
+                this.state.code
+                  ? { visibility: 'visible' }
+                  : { visibility: 'hidden' }
+              }
             >
-              Download PNG
-            </Button>
-          </Grid>
-        </Grid>
-      </Grid>
+              <button
+                style={{ marginTop: '20px' }}
+                className="btn btn-primary"
+                id="downloadPNG"
+                onClick={this.downloadPNG}
+              >
+                Download PNG
+              </button>
+            </div>
+          </form>
+        </div>
+      </section>
     );
   }
 }
 
-export default withStyles(styles)(Generator);
+export default Generator;
