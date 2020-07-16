@@ -29,7 +29,7 @@ You will also see any lint errors in the console.
 
 ## Known Issues
 
-- I'm currently using the Apple Braille font. I think there's probably a better way to do this to make it for transferrable. Maybe using unicode, not sure.
+- I'm currently using the Apple Braille font. I think there's probably a better way to do this to make it more transferrable. Maybe using unicode, not sure.
 
 ## Why?
 
