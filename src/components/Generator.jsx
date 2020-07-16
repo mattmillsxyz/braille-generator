@@ -27,7 +27,7 @@ class Generator extends React.Component {
     html2canvas(document.querySelector('#code'), {
       backgroundColor: 'white',
     }).then(function (canvas) {
-      saveAs(canvas.toDataURL(), 'braille.jpg');
+      saveAs(canvas.toDataURL('image/jpeg'), 'braille.jpg');
     });
   };
 
