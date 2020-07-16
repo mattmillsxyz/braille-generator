@@ -22,16 +22,25 @@ class Generator extends React.Component {
     };
   }
 
-  downloadPNG = e => {
+  downloadJPG = (e) => {
+    e.preventDefault();
+    html2canvas(document.querySelector('#code'), {
+      backgroundColor: 'white',
+    }).then(function (canvas) {
+      saveAs(canvas.toDataURL(), 'braille.jpg');
+    });
+  };
+
+  downloadPNG = (e) => {
     e.preventDefault();
     html2canvas(document.querySelector('#code'), {
       backgroundColor: 'transparent',
-    }).then(function(canvas) {
+    }).then(function (canvas) {
       saveAs(canvas.toDataURL(), 'braille.png');
     });
   };
 
-  handleChange = e => {
+  handleChange = (e) => {
     this.setState({
       text: e.target.value,
       code: Braille.toBraille(e.target.value),
@@ -66,6 +75,14 @@ class Generator extends React.Component {
                   : { visibility: 'hidden' }
               }
             >
+              <button
+                style={{ marginTop: '20px', marginRight: '10px' }}
+                className="btn btn-primary"
+                id="downloadJPG"
+                onClick={this.downloadJPG}
+              >
+                Download JPG
+              </button>
               <button
                 style={{ marginTop: '20px' }}
                 className="btn btn-primary"
