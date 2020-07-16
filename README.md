@@ -29,6 +29,7 @@ You will also see any lint errors in the console.
 
 ## Known Issues
 
+- Empty image download on Android. Image is downloaded, but does not contain braille text.
 - I'm currently using the Apple Braille font. I think there's probably a better way to do this to make it more transferrable. Maybe using unicode, not sure.
 
 ## Why?
