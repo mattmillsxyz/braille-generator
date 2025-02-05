@@ -6,9 +6,9 @@ This is a very basic application to convert text to braille code.
 
 In the project directory, you can run:
 
-### `npm install`
+### `yarn install`
 
-### `npm start`
+### `yarn dev`
 
 Runs the app in the development mode.<br>
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
@@ -34,4 +34,4 @@ You will also see any lint errors in the console.
 
 ## Why?
 
-In my other life, I create digital artwork (like [this](https://www.instagram.com/p/Brne-SzBkHq/)) with various apps on my iPhone. I wanted a quick way to add the title of the artwork using braille code to give it a more interesting look.
+In my other life, I create digital artwork (like [this](https://www.instagram.com/p/Brne-SzBkHq/)). I wanted a quick way to add the title of the artwork using braille code to give it a more interesting look.
