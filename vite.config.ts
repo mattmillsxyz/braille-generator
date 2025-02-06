@@ -12,6 +12,14 @@ export default defineConfig({
     commonjsOptions: {
       include: [/braille/],
     },
+    rollupOptions: {
+      external: ["react"],
+      output: {
+        globals: {
+          react: "React",
+        },
+      },
+    },
   },
   publicDir: "public",
   optimizeDeps: {
