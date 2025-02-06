@@ -60,13 +60,13 @@ export default function Generator() {
       <form className="w-full">
         <div className="mb-4 w-full">
           <input
-            placeholder="Type in the text you want to convert..."
+            placeholder="Type something..."
             value={state.text}
             onChange={handleChange}
             className="w-full px-4 py-2 text-lg border rounded-lg focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2"
             type="text"
             id="text-input"
-            aria-label="Type in the text you want to convert"
+            aria-label="Type something..."
           />
         </div>
 
