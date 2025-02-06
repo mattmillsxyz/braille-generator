@@ -1,7 +1,8 @@
 import { useState, CSSProperties, MouseEvent, ChangeEvent } from "react";
 import Braille from "braille";
 import html2canvas from "html2canvas";
-import { saveAs } from "file-saver";
+
+import { sanitizeFileName } from "../utils";
 
 const codeStyle: CSSProperties = {
   fontFamily: "Apple Braille",
@@ -26,19 +27,29 @@ export default function Generator() {
 
   const downloadJPG = (e: MouseEvent) => {
     e.preventDefault();
+    const sanitizedText = sanitizeFileName(state.text || "untitled");
+    const fileName = `braille-generator-${sanitizedText}.jpg`;
     html2canvas(document.querySelector("#code")!, {
       backgroundColor: "white",
     }).then((canvas) => {
-      saveAs(canvas.toDataURL("image/jpeg"), "braille.jpg");
+      const link = document.createElement("a");
+      link.download = fileName;
+      link.href = canvas.toDataURL("image/jpeg");
+      link.click();
     });
   };
 
   const downloadPNG = (e: MouseEvent) => {
     e.preventDefault();
+    const sanitizedText = sanitizeFileName(state.text || "untitled");
+    const fileName = `braille-generator-${sanitizedText}.png`;
     html2canvas(document.querySelector("#code")!, {
       backgroundColor: "transparent",
     }).then((canvas) => {
-      saveAs(canvas.toDataURL(), "braille.png");
+      const link = document.createElement("a");
+      link.download = fileName;
+      link.href = canvas.toDataURL();
+      link.click();
     });
   };
 
