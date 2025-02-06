@@ -1,0 +1,7 @@
+@font-face {
+  font-family: "UnBraille";
+  src: url("/fonts/UnBraille.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
