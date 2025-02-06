@@ -4,7 +4,9 @@ import { useState, MouseEvent, ChangeEvent } from "react";
 import Braille from "braille";
 import html2canvas from "html2canvas";
 
+import DownloadIcon from "./icons/DownloadIcon";
 import { sanitizeFileName } from "../utils";
+import DownloadButton from "./DownloadButton";
 
 interface GeneratorState {
   code: string;
@@ -47,6 +49,38 @@ export default function Generator() {
     });
   };
 
+  const downloadSVG = (e: MouseEvent) => {
+    e.preventDefault();
+    const sanitizedText = sanitizeFileName(state.text || "untitled");
+    const fileName = `braille-generator-${sanitizedText}.svg`;
+
+    const svgContent = `
+      <svg xmlns="http://www.w3.org/2000/svg" width="800" height="100">
+        <style>
+          @font-face {
+            font-family: 'UBraille';
+            src: url('${window.location.origin}/fonts/UnBraille.ttf') format('truetype');
+          }
+        </style>
+        <text 
+          x="10" 
+          y="50" 
+          font-family="UBraille" 
+          font-size="36px"
+          fill="black"
+        >${state.code}</text>
+      </svg>
+    `;
+
+    const blob = new Blob([svgContent], { type: "image/svg+xml" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = fileName;
+    link.click();
+    URL.revokeObjectURL(url);
+  };
+
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setState({
       ...state,
@@ -77,25 +111,10 @@ export default function Generator() {
           <div>{state.code || ""}</div>
         </div>
 
-        <div
-          style={
-            state.code ? { visibility: "visible" } : { visibility: "hidden" }
-          }
-        >
-          <button
-            className="mt-5 mr-3 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium"
-            id="downloadJPG"
-            onClick={downloadJPG}
-          >
-            Download JPG
-          </button>
-          <button
-            className="mt-5 px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 font-medium"
-            id="downloadPNG"
-            onClick={downloadPNG}
-          >
-            Download PNG
-          </button>
+        <div className={`flex gap-2 mt-8 ${state.code ? "visible" : "hidden"}`}>
+          <DownloadButton onClick={downloadJPG} text="JPG" color="blue" />
+          <DownloadButton onClick={downloadPNG} text="PNG" color="indigo" />
+          <DownloadButton onClick={downloadSVG} text="SVG" color="purple" />
         </div>
       </form>
     </section>
