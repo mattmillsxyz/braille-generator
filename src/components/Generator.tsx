@@ -1,4 +1,4 @@
-import { useState, CSSProperties, FC, MouseEvent, ChangeEvent } from "react";
+import { useState, CSSProperties, MouseEvent, ChangeEvent } from "react";
 import Braille from "braille";
 import html2canvas from "html2canvas";
 import saveAs from "file-saver";
@@ -17,7 +17,7 @@ interface GeneratorState {
   pngUrl: string;
 }
 
-const Generator: FC = () => {
+export default function Generator() {
   const [state, setState] = useState<GeneratorState>({
     code: "",
     text: "",
@@ -96,6 +96,4 @@ const Generator: FC = () => {
       </div>
     </section>
   );
-};
-
-export default Generator;
+}

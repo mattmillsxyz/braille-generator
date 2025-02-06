@@ -1,7 +1,7 @@
 import Generator from "./Generator";
 import Hero from "./Hero";
 
-const App = () => {
+export default function App() {
   return (
     <>
       <main role="main">
@@ -10,6 +10,4 @@ const App = () => {
       </main>
     </>
   );
-};
-
-export default App;
+}

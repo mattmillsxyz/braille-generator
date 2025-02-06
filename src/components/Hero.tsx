@@ -1,4 +1,4 @@
-const Hero = () => {
+export default function Hero() {
   return (
     <section className="row">
       <div className="col-md-8 offset-md-2">
@@ -15,6 +15,4 @@ const Hero = () => {
       </div>
     </section>
   );
-};
-
-export default Hero;
+}
