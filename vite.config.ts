@@ -10,7 +10,7 @@ export default defineConfig({
     outDir: "build",
     sourcemap: true,
     commonjsOptions: {
-      include: [/braille/, /react-dom/],
+      include: [/braille/, /react-dom/, /react/],
     },
     rollupOptions: {
       external: ["react", "react/jsx-runtime", "react-dom"],
