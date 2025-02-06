@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import { useState, CSSProperties, FC, MouseEvent, ChangeEvent } from "react";
 import Braille from "braille";
 import html2canvas from "html2canvas";
 import saveAs from "file-saver";
 
-const codeStyle: React.CSSProperties = {
+const codeStyle: CSSProperties = {
   fontFamily: "Apple Braille",
   minHeight: "36px",
   marginTop: "20px",
@@ -17,14 +17,14 @@ interface GeneratorState {
   pngUrl: string;
 }
 
-const Generator: React.FC = () => {
+const Generator: FC = () => {
   const [state, setState] = useState<GeneratorState>({
     code: "",
     text: "",
     pngUrl: "/",
   });
 
-  const downloadJPG = (e: React.MouseEvent) => {
+  const downloadJPG = (e: MouseEvent) => {
     e.preventDefault();
     html2canvas(document.querySelector("#code")!, {
       backgroundColor: "white",
@@ -33,7 +33,7 @@ const Generator: React.FC = () => {
     });
   };
 
-  const downloadPNG = (e: React.MouseEvent) => {
+  const downloadPNG = (e: MouseEvent) => {
     e.preventDefault();
     html2canvas(document.querySelector("#code")!, {
       backgroundColor: "transparent",
@@ -42,7 +42,7 @@ const Generator: React.FC = () => {
     });
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setState({
       ...state,
       text: e.target.value,
