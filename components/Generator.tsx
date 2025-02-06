@@ -4,7 +4,6 @@ import { useState, MouseEvent, ChangeEvent } from "react";
 import Braille from "braille";
 import html2canvas from "html2canvas";
 
-import DownloadIcon from "./icons/DownloadIcon";
 import { sanitizeFileName } from "../utils";
 import DownloadButton from "./DownloadButton";
 
