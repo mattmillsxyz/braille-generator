@@ -13,7 +13,7 @@ export default defineConfig({
       include: [/braille/],
     },
     rollupOptions: {
-      external: ["react"],
+      external: ["react", "'react/jsx-runtime'"],
       output: {
         globals: {
           react: "React",
