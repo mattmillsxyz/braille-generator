@@ -1,7 +1,7 @@
 import { useState, CSSProperties, MouseEvent, ChangeEvent } from "react";
 import Braille from "braille";
 import html2canvas from "html2canvas";
-import saveAs from "file-saver";
+import { saveAs } from "file-saver";
 
 const codeStyle: CSSProperties = {
   fontFamily: "Apple Braille",
