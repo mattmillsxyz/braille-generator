@@ -110,7 +110,7 @@ export default function Generator() {
           <div>{state.code || ""}</div>
         </div>
 
-        <div className={`flex gap-2 mt-8 ${state.code ? "visible" : "hidden"}`}>
+        <div className={`flex gap-2 mt-4 ${state.code ? "visible" : "hidden"}`}>
           <DownloadButton onClick={downloadJPG} text="JPG" color="blue" />
           <DownloadButton onClick={downloadPNG} text="PNG" color="indigo" />
           <DownloadButton onClick={downloadSVG} text="SVG" color="purple" />
